@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>Movie Store - Profile Preview</title>
+		
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet library="css" name="normalize.css" />
+		<h:outputStylesheet library="css" name="skeleton.css" />
+	</h:head>
+	<h:body>
+	
+		<header id="header">
+			<div class="container">
+				<div class="row">
+					<div class="one-third column">
+						<h1>MyFlix</h1>
+						<span><em>An online movie marketplace</em></span>				
+					</div>
+					
+					<div class="two-thirds column">
+						<section class="name-holder"></section>
+						<nav>
+							<ul>
+								<li><h:outputLink value="registration.xhtml">Register</h:outputLink></li>
+								<li><h:outputLink value="user_management.xhtml">Users</h:outputLink></li>
+								<li><h:outputLink value="shopping.xhtml">Shop</h:outputLink></li>
+							</ul>
+						</nav>				
+					</div>
+				</div><!-- row -->
+			</div><!-- container -->
+		</header>
+		
+		<h:messages globalOnly="true" />
+		<div class="container">
+	
+			<h1>Please confirm your information</h1>
+	
+			<h:form>
+				<table class="u-full-width">
+				
+					<tbody>
+						<tr>
+							<th>id:</th>
+							<th>#{user.userId} </th>
+						</tr>
+						<tr>
+							<th>First Name:</th>
+							<th>#{user.firstName}</th>
+						</tr>
+						<tr>
+							<th>Last Name:</th>
+							<th>#{user.lastName}</th>
+						</tr>
+						<tr>
+							<th>Phone: </th>
+							<th>#{user.phone}</th>
+						</tr>				
+						<tr>
+							<th>Address:</th>
+							<th>#{user.address}</th>
+						</tr>				
+						<tr>
+							<th>Email:</th>
+							<th>#{user.email}</th>
+						</tr>		
+						<tr>
+							<th>Username:</th>
+							<th>#{user.username}</th>
+						</tr>		
+						<tr>
+							<th>Password:</th>
+							<th>#{user.password}</th>
+						</tr>		
+						<tr>
+							<th>Updates:</th>
+							<th>#{user.updates}</th>
+						</tr>					
+						<tr>
+							<th>Privacy:</th>
+							<th>#{user.privacy}</th>
+						</tr>									
+					</tbody>
+				</table>	
+								
+				<h:commandLink value="Submit" styleClass="button button-primary" action="#{user.confirmUserInformation(user.userId)}" />
+				
+				<h:selectOneMenu value="#{user.confirmOrUpdate}">
+					<f:selectItem itemValue="Confirm" itemLabel="confirm" />
+					<f:selectItem itemValue="Update" itemLabel="update" />
+				</h:selectOneMenu>
+			</h:form>
+			
+		</div><!-- container -->
+		
+	</h:body>
+</html>

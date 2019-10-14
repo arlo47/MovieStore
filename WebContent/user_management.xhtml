@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	  
+ 	 <f:metadata>
+	  <f:event type="preRenderView" listener="#{userController.loadUsers()}"/>
+	</f:metadata>
+	  
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>Movie Store - User Management</title>
+
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet library="css" name="normalize.css" />
+		<h:outputStylesheet library="css" name="skeleton.css" />
+	</h:head>
+	<h:body>
+	
+		<header id="header">
+			<div class="container">
+				<div class="row">
+					<div class="one-third column">
+						<h1>MyFlix</h1>
+						<span><em>An online movie marketplace</em></span>				
+					</div>
+					
+					<div class="two-thirds column">
+						<section class="name-holder"></section>
+						<nav>
+							<ul>
+								<li><h:outputLink value="registration.xhtml">Register</h:outputLink></li>
+								<li><h:outputLink value="user_management.xhtml">Users</h:outputLink></li>
+								<li><h:outputLink value="shopping.xhtml">Shop</h:outputLink></li>
+							</ul>
+						</nav>				
+					</div>
+				</div><!-- row -->
+			</div><!-- container -->
+		</header>
+	
+		<h:messages globalOnly="true" />
+		<div class="container">
+			<h1>User Management</h1>
+						
+			<h:form>
+			
+				<div class="row" style="text-align: right;">
+					<label style="display: inline">Search: </label>
+					<h:inputText value="#{userController.theSearchName}" id="theSearchName" />
+					<h:commandButton value="Search" action="user_management?faces-redirect=true" styleClass="button button-primary" />
+					<h:commandLink value="Clear" action="user_management.xhtml" styleClass="button" />
+				</div>
+			
+				<h:dataTable value="#{userController.users}" var="tempUser" cellpadding="1" styleClass="management-table">
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+						#{tempUser.userId}
+					</h:column>
+				
+					<h:column>
+						<f:facet name="header">Name</f:facet>
+						#{tempUser.firstName} #{tempUser.lastName}
+					</h:column>
+										
+					<h:column>
+						<f:facet name="header">Phone</f:facet>
+						#{tempUser.phone}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Address</f:facet>
+						#{tempUser.address}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Email</f:facet>
+						#{tempUser.email}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Username</f:facet>
+						#{tempUser.username}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Updates</f:facet>
+						#{tempUser.updates}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Privacy</f:facet>
+						#{tempUser.privacy}
+					</h:column>
+					
+					<h:column>		
+						<h:inputHidden value="#{tempUser.userId}" />	
+						<h:commandLink value="Update" styleClass="button action-button" action="#{userController.loadUser(tempUser.userId)}" />
+						
+						<h:commandLink value="Delete" styleClass="button action-button" onclick="if(!confirm('Are you sure you want to delete this student?')) return false"
+													  action="#{userController.deleteUser(tempUser.userId)}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+		
+		
+	</h:body>
+</html>

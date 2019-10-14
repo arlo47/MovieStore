@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	  
+    <f:metadata>
+        <f:viewParam name="userId" value="#{user.userId}" />
+    </f:metadata>
+	  
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+		<title>Movie Store Registration - Update User</title>
+		
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet library="css" name="normalize.css" />
+		<h:outputStylesheet library="css" name="skeleton.css" />
+	</h:head>
+	<h:body>
+	
+		<header id="header">
+			<div class="container">
+				<div class="row">
+					<div class="one-third column">
+						<h1>MyFlix</h1>
+						<span><em>An online movie marketplace</em></span>				
+					</div>
+					
+					<div class="two-thirds column">
+						<section class="name-holder"></section>
+						<nav>
+							<ul>
+								<li><h:outputLink value="registration.xhtml">Register</h:outputLink></li>
+								<li><h:outputLink value="user_management.xhtml">Users</h:outputLink></li>
+								<li><h:outputLink value="shopping.xhtml">Shop</h:outputLink></li>
+							</ul>
+						</nav>				
+					</div>
+				</div><!-- row -->
+			</div><!-- container -->
+		</header>
+	
+		<h:messages globalOnly="true" />
+		<div class="container">
+		
+			<h1>Update User</h1>
+				
+			#{param.userId}	
+				
+			<h:form>
+				<div class="row">
+					<div class="one-half column">
+						<label>Id: <h:message styleClass="error" for="user-id" /></label>
+						<h:inputText value="#{user.userId}" id="user-id" class="u-full-width" requiredMessage="Id must be 8 digits." required="true">
+							<f:validateLongRange minimum="10000000" maximum="99999999" />
+						</h:inputText>
+						
+					</div>
+					
+					<div class="one-half column">
+						<label>Email:</label>
+						<h:inputText value="#{user.email}" id="email" class="u-full-width" requiredMessage="Must contain @ and ." required="true">
+							<f:validateRegex pattern="^\S+@\S+$" />
+						</h:inputText>
+						<h:message styleClass="error" for="email" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="one-half column">
+						<label>First Name: <h:message styleClass="error" for="first-name" /></label>
+						<h:inputText value="#{user.firstName}" id="first-name" class="u-full-width" requiredMessage="Only Letters Allowed" required="true">
+							<!-- <f:validateRegex pattern="/^([^0-9]*)$/" />  -->
+						</h:inputText>
+						
+					</div>
+					
+					<div class="one-half column">
+						<label>Last Name: <h:message styleClass="error" for="last-name" /></label>
+						<h:inputText value="#{user.lastName}" id="last-name" class="u-full-width" requiredMessage="Only Letters Allowed" required="true">
+							<!-- <f:validateRegex pattern="/^([^0-9]*)$/" />  -->
+						</h:inputText>
+						
+					</div>
+				</div>
+				
+			
+				<div class="row">
+					<div class="one-half column">
+						<label>Phone: <h:message styleClass="error" for="phone" /></label>
+						<h:inputText value="#{user.phone}" id="phone" class="u-full-width" requiredMessage="Format must be xxx-xxx-xxxx" required="true">
+							<f:validateRegex pattern="\d{3}-\d{3}-\d{4}" />
+						</h:inputText>
+						
+					</div>
+				
+					<div class="one-half column">
+						<label>Address: <h:message styleClass="error" for="address" /></label>
+						<h:inputText value="#{user.address}" id="address" class="u-full-width" requiredMessage="Must be between 10 and 200 characters" required="true">
+							<f:validateLength minimum="10" maximum="200" />
+						</h:inputText>
+						
+					</div>
+				</div>
+				
+
+				<div class="row">
+					<div class="one-half column">
+						<label>Username: <h:message styleClass="error" for="username" /></label>
+						<h:inputText value="#{user.username}" id="username" class="u-full-width" requiredMessage="Must start with IPD17" required="true">
+							<!-- <f:validateRegex pattern="^\S+@\S+$" /> -->
+						</h:inputText>
+						
+					</div>
+					
+					<div class="one-half column">
+						<label>Password: <h:message for="password" styleClass="error" /></label>
+						<h:inputSecret value="#{user.password}" id="password" class="u-full-width" requiredMessage="Must be more than 8 and less than 80 characters" required="true">
+							<f:validateLength minimum="8" maximum="80" />
+						</h:inputSecret>
+						
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="one-half column">
+						<label>Would you like to subscribe to our newsletter? </label>
+						<h:message styleClass="error" for="newsletter" />
+						<h:selectManyCheckbox value="#{user.updates}" id="newsletter" requiredMessage="Required">
+							<f:selectItem itemValue="monthly" itemLabel="Monthly Newsletter" />	
+							<f:selectItem itemValue="weekly" itemLabel="Weekly Newsletter" />
+							<f:selectItem itemValue="none" itemLabel="None" />
+						</h:selectManyCheckbox>
+					</div>
+					
+					<div class="one-half column">
+						<label>Choose a privacy setting:</label>
+						<h:selectOneRadio value="#{user.privacy}">
+							<f:selectItem itemValue="public" itemLabel="Public" />	
+							<f:selectItem itemValue="private" itemLabel="Private" />
+						</h:selectOneRadio>
+					</div>
+				</div>
+			
+				<div class="row">
+					<h:commandButton value="Save" styleClass="button-primary" action="#{userController.updateUser(user)}" />
+				</div>
+			</h:form>
+		</div>
+		
+	</h:body>
+</html>
