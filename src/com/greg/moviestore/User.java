@@ -24,12 +24,12 @@ public class User {
 	private String password;
 	private List<String> updates;
 	private String privacy;
-	private String confirmOrUpdate;
+	private String confirmOrUpdate;		//used in user.confirmUserInformation() for conditional navigation
 	
 	public User() {
-		//default values for privacy and updates
-		this.privacy = "public";
-		updates = new ArrayList<>(Arrays.asList("monthly", "weekly"));
+		//default values for checkbox and radio buttons
+		updates = new ArrayList<>(Arrays.asList("monthly"));
+		privacy = "public";
 	}
 	
 	//args constructor for pre-rendering xhtml page
@@ -159,6 +159,7 @@ public class User {
 		}
 	}
 	
+	//used on profile_preview page to confirm the user information
 	public String confirmUserInformation(int theUserId) throws Exception {
 		
 		if(confirmOrUpdate.equalsIgnoreCase("confirm"))
@@ -171,18 +172,16 @@ public class User {
 	}
 	
 	public String toString() {
-		return "[" + 
-					 "Id: " 			+ userId 	+ "\n" + 
+		return "[" + "Id: " 			+ userId 	+ "\n" + 
 				     " First Name: " 	+ firstName + "\n" + 
 				     " Last Name: " 	+ lastName 	+ "\n" + 
-				     " Phone: " 		+ phone 	+ "\n" + 
+				     " Phone: " 		+ phone 	+  
 				     " Address: " 		+ address 	+ "\n" + 
 				     " Email: " 		+ email 	+ "\n" + 
 				     " Username: " 		+ username 	+ "\n" + 
-				     " Password: " 		+ password 	+ "\n" + 
+				     " Password: " 		+ password 	+ 
 				     " Updates: " 		+ updates 	+ "\n" + 
-				     " Privacy: " 		+ privacy 	+ "\n" + 
-			   "]";
+				     " Privacy: " 		+ privacy 	+ "]";
 	}
 }
 

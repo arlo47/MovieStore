@@ -42,8 +42,8 @@ public class UserController {
 	}
 	
 	public void loadUsers() {
-		logger.info("Loading Users");
-		logger.info("theSearchName = " + theSearchName);
+		logger.info("\n\n ------------------------- Loading Users");
+		logger.info("\n\n theSearchName = " + theSearchName);
 		
 		try {
 			
@@ -95,7 +95,8 @@ public class UserController {
 			
 			Map<String, Object> requestMap = externalContext.getRequestMap();
 
-			requestMap.put("theUser", theUser);
+			//the key value here has been causing issues, if update is not working try changing it
+			requestMap.put("user", theUser);
 			
 			logger.info("\n\n ------------------ requestMap.toString() \n " + requestMap.toString() + "\n");
 		}

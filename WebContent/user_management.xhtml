@@ -98,7 +98,6 @@
 					</h:column>
 					
 					<h:column>		
-						<h:inputHidden value="#{tempUser.userId}" />	
 						<h:commandLink value="Update" styleClass="button action-button" action="#{userController.loadUser(tempUser.userId)}" />
 						
 						<h:commandLink value="Delete" styleClass="button action-button" onclick="if(!confirm('Are you sure you want to delete this student?')) return false"
