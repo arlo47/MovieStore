@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	  
+	 <f:metadata>
+	  <f:event type="preRenderView" listener="#{movieController.loadMovies()}"/>
+	</f:metadata>
+	  
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>Movie Store - Shop</title>
+		
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet library="css" name="normalize.css" />
+		<h:outputStylesheet library="css" name="skeleton.css" />
+	</h:head>
+	<h:body>
+	
+		<header id="header">
+			<div class="container">
+				<div class="row">
+					<div class="one-third column">
+						<h1>MyFlix</h1>
+						<span><em>An online movie marketplace</em></span>				
+					</div>
+					
+					<div class="two-thirds column">
+						<section class="name-holder">
+							<h3 rendered="#{user.firstName != null}">Hello, #{user.firstName} #{user.lastName}</h3>
+						</section>
+						<nav>
+							<ul>
+								<li><h:outputLink value="registration.xhtml">Register</h:outputLink></li>
+								<li><h:outputLink value="user_management.xhtml">Users</h:outputLink></li>
+								<li><h:outputLink value="shopping.xhtml">Shop</h:outputLink></li>
+							</ul>
+						</nav>				
+					</div>
+				</div><!-- row -->
+			</div><!-- container -->
+		</header>
+			
+		<h:messages globalOnly="true" />
+		<div class="container">
+			<h1>Marketplace</h1>
+			
+			<h:form>
+				<div class="movie-container">
+					<ui:repeat value="#{movieController.movies}" var="movie">
+						<section>
+							<h:graphicImage value="/#{movie.imagePath}" />
+							
+							<h2>#{movie.title}</h2>
+							<p>Year Released:#{movie.yearReleased}</p>
+							<p>Directed By: #{movie.director}</p>
+							<p>Genre: #{movie.genre}</p>
+							
+							<h:commandLink value="Add To Cart" styleClass="button button-primary" />
+						</section>
+					</ui:repeat>
+				</div><!-- movie-container -->
+			</h:form>
+		</div><!-- container -->
+		
+	</h:body>
+</html>
