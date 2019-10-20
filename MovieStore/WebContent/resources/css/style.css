@@ -1,0 +1,129 @@
+/* Font Face */
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway-Bold.woff2') format('woff2'),
+        url('../fonts/Raleway-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway-Italic.woff2') format('woff2'),
+        url('../fonts/Raleway-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway-Regular.woff2') format('woff2'),
+        url('../fonts/Raleway-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Layout */
+
+header#header {
+	width: 100%;
+	height: 90px;
+	background-color: #D86701;
+	margin-bottom: 20px;
+	padding-top: 10px;
+}
+
+
+header#header nav {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 30px;
+}
+
+/* General */
+
+tbody td, tbody tr {
+	font-family: 'Raleway', arial, sans-serif;
+	font-size: 12px;
+}
+
+header#header h1 {
+	margin: 0;
+	padding: 0;
+	color: #FFF;
+	font-weight: bold;
+}
+
+header#header span {
+	font-family: 'Raleway', arial, sans-serif;
+	color: #FFF;
+}
+
+header#header nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+header#header nav ul li {
+	list-style-type: none;
+	display: inline-block;
+	margin: 0 3px;
+}
+
+header#header nav ul li a {
+	color: #FFF;
+	text-decoration: none;
+	font-size: 1.2em;
+}
+
+header#header a:hover {
+	color: #CCC;
+}
+
+.management-table a.action-button {
+	display:block;
+	padding: 0 8px !important;
+	line-height: 30px !important;
+	height: 30px !important; 
+}
+
+.movie-container {
+	display: flex;
+	align-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.movie-container section {
+	text-align: center;
+	margin: 1em;
+	width: 190px;
+}
+
+.movie-container section h2 {
+	font-size: 2.2em;
+}
+
+.movie-container section p, .movie-container section h2 {
+	padding: 0;
+	margin: 0;
+}
+
+.error {
+	font-size: 11px;
+	color: red;
+	font-style: italic;
+}
+
+.name-holder {
+	text-align: right;
+	height: 30px;
+}
+
+.name-holder h3 {
+	font-size: 1.4em;
+	color: #FFF;
+}
+
+h3[rendered = false] {
+	display: none;
+}
